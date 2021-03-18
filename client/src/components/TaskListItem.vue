@@ -137,6 +137,8 @@ export default {
 
 .task-trash-button:hover, .task.done .task-trash-button:hover {
   background: var(--color-danger);
+  overflow-x: visible;
+  z-index: 1;
   color: white;
   cursor: pointer;
   border-radius: var(--border-radius-default);
@@ -144,6 +146,17 @@ export default {
 
 .task-trash-icon {
   height: inherit;
+}
+
+@media screen and (max-width: 500px) {
+  .task-trash-button {
+    /*background: var(--color-danger);*/
+  }
+
+  .task-trash-icon {
+    color: var(--color-danger);
+  }
+
 }
 
 </style>

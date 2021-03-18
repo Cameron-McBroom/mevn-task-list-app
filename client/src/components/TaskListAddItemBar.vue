@@ -38,7 +38,7 @@ h1 {
 .new-item {
   display: flex;
   align-items: stretch;
-  width: 30rem;
+  width: 100%;
   height: 3rem;
   margin: 0 auto;
 }
@@ -83,5 +83,7 @@ h1 {
 .Todo-List-Info h3 {
   align-self: center;
 }
+
+
 
 </style>

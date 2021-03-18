@@ -91,3 +91,9 @@ select {
         scroll-behavior: auto !important;
     }
 }
+
+@media screen and (max-width: 500px){
+    p {
+        font-size: 14px;
+    }
+}

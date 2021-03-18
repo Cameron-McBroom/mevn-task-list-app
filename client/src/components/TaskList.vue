@@ -1,6 +1,6 @@
 <template>
   <div class="Task-List" :style="{height: taskListComputedHeight}">
-    <h1>Vue Node Todo List</h1>
+    <h1 class="heading">Add a new task</h1>
 
     <task-list-add-item-bar @addTodo="addNewTodo" v-model="newTodo"/>
 
@@ -57,7 +57,7 @@ export default {
       return this.items.filter(item => !item.done).length;
     },
     taskListComputedHeight() {
-      return `${(210 + this.items.length * 57)}px`
+      return `${(200 + this.items.length * 55)}px`
     }
   },
   methods: {
@@ -207,26 +207,35 @@ export default {
 
 .Task-List {
   display: inline-block;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
   border-radius: 10px;
   background-color: var(--color-background-panel);
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   max-height: 600px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
-  -webkit-transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
-}
+  min-height: 200px;
+  min-width: 350px;
+  width: 100%;
+  max-width: 600px;
 
+  -webkit-transition: all .6s cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all .6s cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all .6s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all .6s cubic-bezier(0.42, 0, 0.58, 1);
+}
 
 h1 {
   margin-bottom: 1rem;
   text-align: left;
 }
 
+.new-item {
+  padding-right: 7px;
+}
+
+
 .task-list-items {
   box-sizing: border-box;
-  margin-top: 1rem;
+  margin: 1rem 0 ;
   max-height: 400px;
   overflow: scroll;
   overflow-x: hidden;
@@ -235,7 +244,7 @@ h1 {
 
 .Todo-List-Info {
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 calc(1rem + 7px) 0 1rem;
   position: absolute;
   bottom: 1rem;
   left: 0;
@@ -260,6 +269,18 @@ h1 {
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+
+@media screen and (max-width: 500px){
+  .Task-List {
+    border-radius: 0 0 10px 10px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: x-large;
+  }
 }
 
 </style>

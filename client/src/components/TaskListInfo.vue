@@ -52,4 +52,13 @@ h1 {
   opacity: 1;
 }
 
+@media screen and (max-width: 500px) {
+
+  .Todo-List-Info h3 {
+    font-size: medium;
+  }
+
+}
+
+
 </style>

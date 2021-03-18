@@ -24,9 +24,18 @@ export default {
   transform: translate(-50% ,-50%);
 }
 
-.Todo-List-Page {
-  height: 100vh;
-  width: 100vw;
+
+body {
   background: linear-gradient(var(--color-vue-green), #9198e5);
 }
+
+@media screen and (max-width: 500px) {
+  .Task-List {
+    position: relative;
+    transform: initial;
+    top: initial;
+    left: initial;
+  }
+}
+
 </style>
