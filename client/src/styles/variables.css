@@ -1,0 +1,11 @@
+:root {
+    /*Colors*/
+    --color-vue-green: #41B883;
+    --color-default: #2c3e50;
+    --color-background-panel: #F8F8F8;
+    --color-danger: #FF6666;
+
+    --border-radius-default: 5px;
+    --border-default: 1px solid lightgrey;
+
+}
