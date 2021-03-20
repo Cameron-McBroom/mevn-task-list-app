@@ -79,4 +79,19 @@ router.delete('/:id', async (req, res) => {
 
 })
 
+router.post('/deleteall', async (req, res) => {
+    try {
+        const response = await TaskListItem.deleteMany({})
+
+        if (!response.ok) throw Error("Something went wrong deleting all records")
+
+        res.status(200).json(response)
+
+    } catch (error) {
+
+        res.status(500).json({ message: error.message })
+
+    }
+})
+
 module.exports = router

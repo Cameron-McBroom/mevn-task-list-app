@@ -14,7 +14,14 @@ const TaskListItemSchema = new Schema(
         dateCreated: {
             type: Date,
             default: Date.now()
+        },
+        notes: {
+            type: String
+        },
+        dueDate: {
+            type: Date
         }
+
     }
 )
 

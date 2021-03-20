@@ -3,21 +3,21 @@
   <div class="task">
     <div
         class="task-check-box"
-        :class="{checked: task.done}"
-        @click="$emit('checked', task.id)">
+        :class="{checked: task.complete}"
+        @click="$emit('checked', task._id)">
 
-      <fa-icon v-if="task.done" class="task-check-box-icon" icon="check"/>
+      <fa-icon v-if="task.complete" class="task-check-box-icon" icon="check"/>
 
     </div>
 
-    <div class="task-item" @click="editingId = task.id" >
+    <div class="task-item" @click="editingId = task._id" >
 
       <input
           ref="input"
           @blur="updated"
           class="task-item-input"
-          :class="{disabled: editingId !== task.id}"
-          :value="task.name"
+          :class="{disabled: editingId !== task._id}"
+          :value="task.description"
       />
 
     </div>
@@ -94,7 +94,7 @@ export default {
 }
 
 .task.done .task-item-input,  .task.done  .task-item-input:hover{
-  background: #F8F8F8;
+  background: none;
   cursor: default;
   text-decoration-line: line-through;
   color: darkgrey;
@@ -149,13 +149,6 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-  .task-trash-button {
-    /*background: var(--color-danger);*/
-  }
-
-  .task-trash-icon {
-    color: var(--color-danger);
-  }
 
 }
 

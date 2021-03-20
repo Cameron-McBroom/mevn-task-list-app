@@ -20,7 +20,7 @@ export default {
 
     async addNewTask(task) {
         const response = await axios.post('/api/tasklistitems', {
-            description: task.name
+            description: task.description
         })
         return response.data
     },
@@ -32,10 +32,16 @@ export default {
 
     async updateTask(id, updatedTask) {
       const response = await axios.put(`/api/tasklistitems/${id}`, {
-          description : updatedTask.name,
-          complete: updatedTask.done
+          description : updatedTask.description,
+          complete: updatedTask.complete,
+          notes: updatedTask.notes
       })
         return response.data
 
+    },
+
+    async deleteAll() {
+        const response = await axios.post('api/tasklistitems/deleteall')
+        return response.data
     }
 }
