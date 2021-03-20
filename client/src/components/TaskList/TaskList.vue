@@ -14,7 +14,7 @@
           @click="toggleIncomplete($event)"
       />
 
-    <transition name="fade">
+    <transition name="fade" @before-leave="beforeLeave">
       <task-list-list show="incomplete" v-if="incompleteTaskOpen"/>
     </transition>
 
@@ -27,7 +27,7 @@
         @click="toggleComplete($event)"
     />
 
-    <transition name="fade">
+    <transition name="fade" @before-leave="beforeLeave">
       <task-list-list show="complete" v-if="completeTaskOpen"/>
     </transition>
 
@@ -138,6 +138,15 @@ export default {
       }
     },
 
+    beforeLeave(el) {
+      // special function that stops animated elements from jumping when they are changed to absolute as they fade out
+      const {marginLeft, marginTop, width, height} = window.getComputedStyle(el)
+      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`
+      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
+      el.style.width = width
+      el.style.height = height
+    },
+
     taskValid() {
       return this.newTodo && this.newTodo.length >= 1
     },
@@ -185,12 +194,15 @@ h1 {
   width: 100%;
   padding: 0 1rem;
   left: 0;
-  scrollbar-width: none;
 }
 
 .task-list-incomplete-header {
   margin-top: .5rem;
   scrollbar-width: none;
+}
+
+.fade-leave-active {
+  position: absolute;
 }
 
 .fade-enter-active, .fade-leave-active {

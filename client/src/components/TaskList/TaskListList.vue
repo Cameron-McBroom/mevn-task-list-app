@@ -32,8 +32,9 @@ export default {
   data() {
     return {
       taskListClass: {
-        'task-list-items': this.show === 'incomplete',
-        'task-list-complete': this.show === 'complete'
+        'task-list': true,
+        'incomplete': this.show === 'incomplete',
+        'complete': this.show === 'complete'
       }
     }
   },
@@ -135,19 +136,26 @@ export default {
 
 <style scoped>
 
-.task-list-complete {
-  margin-top: calc(50px);
+.task-list {
+  box-sizing: border-box;
+  overflow: scroll;
+  max-height: 400px;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
+.task-list::-webkit-scrollbar {
+  display: none;
+}
 
+.task-list.complete {
+  margin-top: 50px;
 
-.task-list-items {
-  box-sizing: border-box;
-  margin: 0 0 0 0;
-  max-height: 400px;
-  overflow: scroll;
-  overflow-x: hidden;
-  scrollbar-width: none;
+}
+
+.task-list.incomplete {
+
 }
 
 .list-leave-active {
