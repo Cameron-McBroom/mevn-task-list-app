@@ -40,6 +40,15 @@ import TaskListAddItemBar from "./TaskListAddItemBar";
 import TaskListDropDown from "./TaskListDropDown";
 import TaskListList from "./TaskListList";
 
+
+/**
+ * Constant values that are used to control the height animations when items are added and deleted
+ * */
+const TASK_ITEM_HEIGHT = 56
+const LIST_MAX_HEIGHT = 650
+const DROPDOWN_HEIGHT = 50
+const EMPTY_LIST_HEIGHT = 150
+
 export default {
   name: 'TodoList',
   components: {
@@ -82,14 +91,12 @@ export default {
 
     taskListComputedHeight() {
       if (!this.tasks) return
-      const emptyHolderSize = 150
-      const incompleteDropdownSize = 50
-      const completeDropdownSize = this.completedTaskCount > 0 ? 50 : 0
-      const incompleteTaskSize = this.incompleteTaskOpen ? (this.incompleteTaskCount * 56) : 0
-      const completeTasksOpenSize = this.completeTaskOpen ? (this.completedTaskCount * 58) : 0
+      const completeDropdownSize = this.completedTaskCount > 0 ? DROPDOWN_HEIGHT : 0
+      const incompleteTasksOpenSize = this.incompleteTaskOpen ? (this.incompleteTaskCount * TASK_ITEM_HEIGHT) : 0
+      const completeTasksOpenSize = this.completeTaskOpen ? (this.completedTaskCount * TASK_ITEM_HEIGHT) : 0
 
       return `${
-        ( emptyHolderSize + incompleteDropdownSize + incompleteTaskSize + completeTasksOpenSize + completeDropdownSize)
+        ( EMPTY_LIST_HEIGHT + DROPDOWN_HEIGHT + completeDropdownSize + completeTasksOpenSize + incompleteTasksOpenSize)
       }px`
     }
 
@@ -110,31 +117,29 @@ export default {
       }
     },
 
-    toggleIncomplete(value) {
-      const maxHeight = 600
-      const taskItemHeight = 56
+    toggleIncomplete(show) {
       const totalTasks = this.tasks.length
+      const currentListSize = (totalTasks * TASK_ITEM_HEIGHT) + (DROPDOWN_HEIGHT * 2) + EMPTY_LIST_HEIGHT
 
-      if (value && totalTasks * taskItemHeight > maxHeight) {
+      if (show && currentListSize > LIST_MAX_HEIGHT) {
         this.completeTaskOpen = false
         this.incompleteTaskOpen = true
       }
       else {
-        this.incompleteTaskOpen = value
+        this.incompleteTaskOpen = show
       }
     },
 
-    toggleComplete(value) {
-      const maxHeight = 600
-      const taskItemHeight = 56
+    toggleComplete(show) {
       const totalTasks = this.tasks.length
+      const currentListSize = (totalTasks * TASK_ITEM_HEIGHT) + (DROPDOWN_HEIGHT * 2) + EMPTY_LIST_HEIGHT
 
-      if (value && totalTasks * taskItemHeight > maxHeight) {
+      if (show && currentListSize > LIST_MAX_HEIGHT) {
         this.incompleteTaskOpen = false
         this.completeTaskOpen = true
       }
       else {
-        this.completeTaskOpen = value
+        this.completeTaskOpen = show
       }
     },
 
